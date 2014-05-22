@@ -8,7 +8,7 @@ class supervisord::config inherits supervisord {
             owner   => 'root',
             group   => 'root',
             mode    => '0644',
-            require => Package['supervisor'];
+            require => Exec['pip_install_supervisor'];
 
         '/etc/supervisord.d':
             ensure => directory,
