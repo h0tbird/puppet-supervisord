@@ -1,13 +1,7 @@
 class supervisord::install inherits supervisord {
 
-    package { 'python-setuptools':
+    package { 'python-pip':
         ensure => latest,
-    } ->
-
-    exec { 'easy_install_pip':
-        command => 'easy_install pip',
-        creates => '/usr/bin/pip',
-        path    => '/usr/bin',
     } ->
 
     package { 'supervisor':
