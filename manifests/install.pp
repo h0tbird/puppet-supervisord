@@ -1,7 +1,7 @@
 class supervisord::install inherits supervisord {
 
     package { 'python-setuptools':
-        ensure => $version,
+        ensure => latest,
     } ->
 
     exec { 'easy_install_pip':
@@ -10,9 +10,8 @@ class supervisord::install inherits supervisord {
         path    => '/usr/bin',
     } ->
 
-    exec { 'pip_install_supervisor':
-        command => 'pip install supervisor',
-        creates => '/usr/bin/supervisord',
-        path    => '/usr/bin',
+    package { 'supervisor':
+        ensure   => $version,
+        provider => 'pip',
     }
 }
